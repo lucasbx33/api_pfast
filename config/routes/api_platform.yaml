@@ -1,0 +1,35 @@
+api_platform:
+    resource: .
+    type: api_platform
+    prefix: /api
+
+user_mail:
+    path: '/api/users/{id}/mail'
+    controller: 'App\Controller\UserMailController::getUserMail'
+    methods: [GET]
+
+user_parking_like:
+    path: '/api/users/{id}/parking'
+    controller: 'App\Controller\UserParkingController::getUserParking'
+    methods: [GET]
+
+register:
+    path: '/api/register'
+    controller: 'App\Controller\RegisterController::register'
+    methods: [POST]
+
+setParkLike:
+    path: '/api/setparklike/{id}'
+    controller: 'App\Controller\SetParkLike::addUserParking'
+    methods: [POST]
+
+setToken:
+    path: '/api/setToken/{id}'
+    controller: 'App\Controller\SetTokenController::setToken'
+    methods: [POST]
+
+api_user_id:
+    path: '/api/users/gettoken'
+    controller: 'App\Controller\GetUserIdController::getUserId'
+    methods: [POST]
+
