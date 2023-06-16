@@ -6,7 +6,7 @@ use App\Entity\User;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class UserParkingController
+class GetParkingController
 {
     #[Route('/api/users/{id}/parking', name: 'api_parking', methods: ['GET'])]
     public function getUserParking(User $user): Response

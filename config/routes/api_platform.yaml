@@ -5,12 +5,12 @@ api_platform:
 
 user_mail:
     path: '/api/users/{id}/mail'
-    controller: 'App\Controller\UserMailController::getUserMail'
+    controller: 'App\Controller\GetMailController::getUserMail'
     methods: [GET]
 
 user_parking_like:
     path: '/api/users/{id}/parking'
-    controller: 'App\Controller\UserParkingController::getUserParking'
+    controller: 'App\Controller\GetParkingController::getUserParking'
     methods: [GET]
 
 register:
@@ -28,8 +28,17 @@ setToken:
     controller: 'App\Controller\SetTokenController::setToken'
     methods: [POST]
 
-api_user_id:
+user_id:
     path: '/api/users/gettoken'
     controller: 'App\Controller\GetUserIdController::getUserId'
     methods: [POST]
 
+changeMail:
+    path: '/api/users/{id}/mail'
+    controller: 'App\Controller\ChangeMailController::changeUserMail'
+    methods: [PUT]
+
+DeleteUser:
+    path: '/api/users/delete/{id}'
+    controller: 'App\Controller\DeleteUserController::deleteUser'
+    methods: [DELETE]
