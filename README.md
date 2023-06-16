@@ -1,6 +1,8 @@
 # Commande pour la base de donnée:
 (prérequis: connecter la db dans .env)
 
+Composer install
+
 ## Commandes
 1) make:migration
 2) php bin/console make:migration
