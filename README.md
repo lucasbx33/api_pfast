@@ -7,6 +7,8 @@
 3) doctrine:migrations:migrate 
 4) php bin/console doctrine:migrations:migrate
 
+lancer le serveur: symfony serve
+
 ## routes
 routes => api_apiplatform.yaml
 Pour le moment j'ai fait les tests principalement sur postman
