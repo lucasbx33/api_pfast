@@ -3,12 +3,12 @@ api_platform:
     type: api_platform
     prefix: /api
 
-user_mail:
+get_user_mail:
     path: '/api/users/{id}/mail'
     controller: 'App\Controller\GetMailController::getUserMail'
     methods: [GET]
 
-user_parking_like:
+get_parking_like:
     path: '/api/users/{id}/parking'
     controller: 'App\Controller\GetParkingController::getUserParking'
     methods: [GET]
