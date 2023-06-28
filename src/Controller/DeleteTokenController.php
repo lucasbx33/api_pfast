@@ -5,11 +5,11 @@ namespace App\Controller;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class GetUserIdControllerByToken extends AbstractController
+class DeleteTokenController extends AbstractController
 {
     private $entityManager;
 
@@ -18,21 +18,26 @@ class GetUserIdControllerByToken extends AbstractController
         $this->entityManager = $entityManager;
     }
 
-    #[Route('/api/getIdToken', name: 'api_user_id', methods: ['POST'])]
-    public function getUserId(Request $request): Response
+    #[Route('/api/deleteToken', name: 'delete_token', methods: ['POST'])]
+    public function deleteToken(Request $request): Response
     {
         $token = $request->headers->get('Authorization');
 
-        // Remplacez cette logique de récupération de l'utilisateur par la vôtre
+        if (!$token) {
+            throw $this->createNotFoundException('Token not provided.');
+        }
+
         $userRepository = $this->entityManager->getRepository(User::class);
         $user = $userRepository->findOneBy(['token' => $token]);
 
         if (!$user) {
-            throw $this->createNotFoundException('Utilisateur introuvable.');
+            throw $this->createNotFoundException('User not found.');
         }
 
-        $id = $user->getId();
+        // Remove token from user
+        $user->setToken(null);
+        $this->entityManager->flush();
 
-        return new Response($id);
+        return new Response('Token deleted successfully.', Response::HTTP_OK);
     }
 }

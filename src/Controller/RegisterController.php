@@ -37,6 +37,11 @@ class RegisterController extends AbstractController
         $user->setPassword($hashedPassword);
 
         $this->entityManager->persist($user);
+        // Generate token
+        $token = base64_encode(random_bytes(32));
+
+        // Set token to user
+        $user->setToken($token);
         $this->entityManager->flush();
 
         return new Response('User registered successfully!', Response::HTTP_CREATED);

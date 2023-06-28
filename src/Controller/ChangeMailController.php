@@ -18,18 +18,26 @@ class ChangeMailController extends AbstractController
         $this->entityManager = $entityManager;
     }
 
-    #[Route('/api/changemail/{id}', name: 'api_change_mail', methods: ['PUT'])]
-    public function changeUserMail(Request $request, User $user): Response
+    #[Route('/api/changemail', name: 'api_change_mail', methods: ['PUT'])]
+    public function changeUserMail(Request $request): Response
     {
+        $token = $request->headers->get('Authorization');
+
+        if (!$token) {
+            throw $this->createNotFoundException('Token not provided.');
+        }
+
+        $userRepository = $this->entityManager->getRepository(User::class);
+        $user = $userRepository->findOneBy(['token' => $token]);
+
+        if (!$user) {
+            throw $this->createNotFoundException('User not found.');
+        }
+
         $data = json_decode($request->getContent(), true);
         $newMail = $data['mail'];
 
-        // Vérifiez si l'utilisateur existe
-        if (!$user) {
-            throw $this->createNotFoundException('Utilisateur non trouvé.');
-        }
-
-        // Modifiez l'adresse e-mail de l'utilisateur
+        // Modifier l'adresse e-mail de l'utilisateur
         $user->setMail($newMail);
         $this->entityManager->flush();
 

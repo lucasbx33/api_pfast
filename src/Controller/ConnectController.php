@@ -35,13 +35,15 @@ class ConnectController extends AbstractController
         $hashedPassword = hash('sha512', $password);
 
         if ($user->getPassword() === $hashedPassword) {
-            return new Response('true', Response::HTTP_OK);
+            // Generate token
+            $token = base64_encode(random_bytes(32));
+
+            // Set token to user
+            $user->setToken($token);
+            $this->entityManager->flush();
+            return new Response($token, Response::HTTP_OK);
         } else {
             return new Response('false', Response::HTTP_OK);
         }
     }
-
-
-
-
 }

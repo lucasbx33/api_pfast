@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
@@ -17,15 +18,23 @@ class DeleteUserController extends AbstractController
         $this->entityManager = $entityManager;
     }
 
-    #[Route('/api/delete/{id}', name: 'api_delete_user', methods: ['DELETE'])]
-    public function deleteUser(User $user): Response
+    #[Route('/api/deleteUser', name: 'api_delete_user', methods: ['DELETE'])]
+    public function deleteUser(Request $request): Response
     {
-        // Vérifiez si l'utilisateur existe
-        if (!$user) {
-            throw $this->createNotFoundException('Utilisateur non trouvé.');
+        $token = $request->headers->get('Authorization');
+
+        if (!$token) {
+            throw $this->createNotFoundException('Token not provided.');
         }
 
-        // Supprimez l'utilisateur
+        $userRepository = $this->entityManager->getRepository(User::class);
+        $user = $userRepository->findOneBy(['token' => $token]);
+
+        if (!$user) {
+            throw $this->createNotFoundException('User not found.');
+        }
+
+        // Supprimer l'utilisateur
         $this->entityManager->remove($user);
         $this->entityManager->flush();
 

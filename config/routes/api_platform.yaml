@@ -3,13 +3,8 @@ api_platform:
     type: api_platform
     prefix: /api
 
-get_user_mail:
-    path: '/api/{id}/mail'
-    controller: 'App\Controller\GetMailController::getUserMail'
-    methods: [GET]
-
 get_parking_like:
-    path: '/api/parking/{id}'
+    path: '/api/parking'
     controller: 'App\Controller\GetParkingController::getUserParking'
     methods: [GET]
 
@@ -19,34 +14,24 @@ register:
     methods: [POST]
 
 setParkLike:
-    path: '/api/setparklike/{id}'
+    path: '/api/setparklike'
     controller: 'App\Controller\SetParkLike::addUserParking'
     methods: [POST]
 
-setToken:
-    path: '/api/setToken/{id}'
-    controller: 'App\Controller\SetTokenController::setToken'
-    methods: [POST]
-
-getIdToken:
-    path: '/api/getIdToken'
-    controller: 'App\Controller\GetUserIdControllerByToken::getUserId'
+deleteToken:
+    path: '/api/deleteToken'
+    controller: 'App\Controller\DeleteTokenController::deleteToken'
     methods: [POST]
 
 changeMail:
-    path: '/api/changemail/{id}'
+    path: '/api/changemail'
     controller: 'App\Controller\ChangeMailController::changeUserMail'
     methods: [PUT]
 
 DeleteUser:
-    path: '/api/delete/{id}'
+    path: '/api/deleteUser'
     controller: 'App\Controller\DeleteUserController::deleteUser'
     methods: [DELETE]
-
-getIdMail:
-    path: '/api/getIdMail'
-    controller: 'App\Controller\GetUserIdControllerByMail::getUserId'
-    methods: [POST]
 
 connect:
     path: '/api/connect'
