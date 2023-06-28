@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class GetParkingController
 {
-    #[Route('/api/users/{id}/parking', name: 'api_parking', methods: ['GET'])]
+    #[Route('/api/parking/{id}', name: 'get_parking_like', methods: ['GET'])]
     public function getUserParking(User $user): Response
     {
         $parking = $user->getParkingLike();

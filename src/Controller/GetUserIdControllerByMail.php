@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class GetUserIdController extends AbstractController
+class GetUserIdControllerByMail extends AbstractController
 {
     private $entityManager;
 
@@ -18,21 +18,22 @@ class GetUserIdController extends AbstractController
         $this->entityManager = $entityManager;
     }
 
-    #[Route('/api/users/gettoken', name: 'api_user_id', methods: ['POST'])]
+    #[Route('/api/getIdMail', name: 'getIdMail', methods: ['POST'])]
     public function getUserId(Request $request): Response
     {
-        $token = $request->headers->get('Authorization');
-
-        // Remplacez cette logique de récupération de l'utilisateur par la vôtre
+        $data = json_decode($request->getContent(), true);
+        $email = $data['email'];
+    
         $userRepository = $this->entityManager->getRepository(User::class);
-        $user = $userRepository->findOneBy(['token' => $token]);
-
+        $user = $userRepository->findOneBy(['mail' => $email]);
+    
         if (!$user) {
             throw $this->createNotFoundException('Utilisateur introuvable.');
         }
-
+    
         $id = $user->getId();
-
+    
         return new Response($id);
     }
+
 }

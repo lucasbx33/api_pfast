@@ -18,7 +18,7 @@ class ChangeMailController extends AbstractController
         $this->entityManager = $entityManager;
     }
 
-    #[Route('/api/users/{id}/mail', name: 'api_change_mail', methods: ['PUT'])]
+    #[Route('/api/changemail/{id}', name: 'api_change_mail', methods: ['PUT'])]
     public function changeUserMail(Request $request, User $user): Response
     {
         $data = json_decode($request->getContent(), true);

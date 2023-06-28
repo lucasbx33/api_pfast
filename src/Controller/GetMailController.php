@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class GetMailController
 {
-    #[Route('/api/users/{id}/mail', name: 'api_mail', methods: ['GET'])]
+    #[Route('/api/{id}/mail', name: 'api_mail', methods: ['GET'])]
     public function getUserMail(User $user): Response
     {
         $mail = $user->getMail();

@@ -17,7 +17,7 @@ class DeleteUserController extends AbstractController
         $this->entityManager = $entityManager;
     }
 
-    #[Route('/api/users/delete/{id}', name: 'api_delete_user', methods: ['DELETE'])]
+    #[Route('/api/delete/{id}', name: 'api_delete_user', methods: ['DELETE'])]
     public function deleteUser(User $user): Response
     {
         // Vérifiez si l'utilisateur existe
