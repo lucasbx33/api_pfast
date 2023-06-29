@@ -75,7 +75,7 @@ class User
         return $this->parking_like;
     }
 
-    public function setToken(string $token): static
+    public function setToken(?string $token): static
     {
         $this->token = $token;
 

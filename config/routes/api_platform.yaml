@@ -37,3 +37,8 @@ connect:
     path: '/api/connect'
     controller: 'App\Controller\ConnectController::connect'
     methods: [POST]
+
+checkToken:
+    path: '/api/checkToken'
+    controller: 'App\Controller\CheckTokenController::checkToken'
+    methods: [POST]

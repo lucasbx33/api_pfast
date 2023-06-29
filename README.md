@@ -40,3 +40,6 @@ Routes api:
 ### connexion (controle si le mdp est le bon et retourne true ou false) /api/connect
         Dans headers, set "Content-Type" en application/json et set Password en mot de passe 
         dans body : {"email": "example@example.fr"}
+
+### check si un token existe ou non : /api/checkToken
+        Dans headers: set token en token à controler

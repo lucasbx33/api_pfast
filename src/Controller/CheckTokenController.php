@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class DeleteTokenController extends AbstractController
+class CheckTokenController extends AbstractController
 {
     private $entityManager;
 
@@ -18,8 +18,8 @@ class DeleteTokenController extends AbstractController
         $this->entityManager = $entityManager;
     }
 
-    #[Route('/api/deleteToken', name: 'delete_token', methods: ['POST'])]
-    public function deleteToken(Request $request): Response
+    #[Route('/api/checkToken', name: 'check_token', methods: ['POST'])]
+    public function checkToken(Request $request): Response
     {
         $token = $request->headers->get('token');
 
@@ -34,10 +34,6 @@ class DeleteTokenController extends AbstractController
             throw $this->createNotFoundException('User not found.');
         }
 
-        // Remove token from user
-        $user->setToken(null);
-        $this->entityManager->flush();
-
-        return new Response('Token deleted successfully.', Response::HTTP_OK);
+        return new Response('Token exists.', Response::HTTP_OK);
     }
 }
