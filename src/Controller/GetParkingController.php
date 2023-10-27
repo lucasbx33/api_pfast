@@ -42,3 +42,4 @@ class GetParkingController extends AbstractController
         return new JsonResponse($parkingJson, Response::HTTP_OK, ['Content-Type' => 'application/json']);
     }
 }
+ 

@@ -42,7 +42,15 @@ class RegisterController extends AbstractController
 
         // Set token to user
         $user->setToken($token);
+
+        $user->setCodeVerif(str_pad(mt_rand(0, 9999), 4, '0', STR_PAD_LEFT));
+
+
+        // mettre l'envoie d'email
+
+
         $this->entityManager->flush();
+
 
         return new Response('User registered successfully!', Response::HTTP_CREATED);
     }

@@ -24,14 +24,14 @@ Routes api:
         dans Headers: "token" avec le token que vous souhaitez supprimer
 
 ### récupérer parking likés d'un utilisateur: /api/parking
-        dans Headers: "token" avec le token que vous souhaitez supprimer
+        dans Headers: "token" avec le token de l'utilisateur
 
 ### Créer un compte: /api/register
         Dans headers, key "Content-Type" en application/json
         dans body : {"email": "example@example.fr","password": "test"}
         
 ### SetParkingLike: /api/setparklike
-        Dans headers, set "Content-Type" en application/json et set token avec le token que vous souhaitez supprimer
+        Dans headers, set "Content-Type" en application/json et set token avec le token
         dans body : {"parking_like": "45"}
 
 ### Delete token: /api/deleteToken

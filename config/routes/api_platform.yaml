@@ -42,3 +42,8 @@ checkToken:
     path: '/api/checkToken'
     controller: 'App\Controller\CheckTokenController::checkToken'
     methods: [POST]
+
+send_Mail:
+    path: '/api/sendMail'
+    controller: 'App\Controller\SendMailController::sendMail'
+    methods: [POST]

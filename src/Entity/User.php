@@ -29,6 +29,12 @@ class User
     #[ORM\Column(length: 255)]
     private ?string $token = null;
 
+    #[ORM\Column(length: 4)]
+    private ?string $codeVerif = null;
+
+    #[ORM\Column(type: 'boolean')]
+private bool $isVerif = false;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -80,5 +86,27 @@ class User
         $this->token = $token;
 
         return $this;
+    }
+
+    public function getCodeVerif(): ?string
+    {
+        return $this->codeVerif;
+    }
+
+    public function setCodeVerif(string $codeVerif): static
+    {
+        $this->codeVerif = $codeVerif;
+        
+        return $this;
+    }
+
+    public function getIsVerif(): bool
+    {
+        return $this->isVerif;
+    }
+
+    public function setIsVerif(bool $isVerif): void
+    {
+        $this->isVerif = $isVerif;
     }
 }
